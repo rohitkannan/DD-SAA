@@ -1,0 +1,15 @@
+# HTCondor submit file for running J-SAA and J+-SAA instances
+executable=shell_jsaa.sh
+getenv=true
+log=main_log.txt
+output=main_out.txt
+error=main_errors.txt
+should_transfer_files=Yes
+when_to_transfer_output=ON_EXIT
+transfer_input_files=main_jsaa.jl,demand_model.jl,maxParameters.jl,params_case1_jsaa.jl,randomSeeds.jl,resource_20_30.jl,solveModel.jl,evaluateSoln.jl,estimateSolnCost.jl,genJSAAScenarios.jl,regressionMethods.jl
+arguments = $(modRepNum) $(degNum) $(dataRepNum) $(sampSizeNum)
+request_memory=1GB
+request_disk=1GB
+request_cpus=2
+max_idle=700
+queue modRepNum,degNum,dataRepNum,sampSizeNum from instances_case1_jsaa.txt

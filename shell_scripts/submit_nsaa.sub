@@ -1,0 +1,14 @@
+# HTCondor submit file for running naive SAA instances
+executable=shell_nsaa.sh
+getenv=true
+log=main_log.txt
+output=main_out.txt
+error=main_errors.txt
+should_transfer_files=Yes
+when_to_transfer_output=ON_EXIT
+transfer_input_files=main_nsaa.jl,demand_model.jl,maxParameters.jl,params_case1_nsaa.jl,randomSeeds.jl,resource_20_30.jl,solveModel.jl,evaluateSoln.jl,estimateSolnCost.jl
+arguments = $(modRepNum) $(degNum) $(dataRepNum) $(sampSizeNum)
+request_memory=10GB
+request_disk=1GB
+request_cpus=2
+queue modRepNum,degNum,dataRepNum,sampSizeNum from instances_case1_nsaa.txt
